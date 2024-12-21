@@ -107,3 +107,16 @@ services:
       - ${ROOT_PATH}/config/bazarr:/config # config files
       - ${ROOT_PATH}/complete/movies:/movies # movies folder
       - ${ROOT_PATH}/complete/tv:/tv # tv shows folder
+
+  falre_solverr:
+    container_name: falre_solverr
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    restart: unless-stopped
+    networks:
+      - htpcnet
+    ports:
+      - 8191:8191
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_HTML=${LOG_HTML:-false}
+      - TZ=${TZ}
